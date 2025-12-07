@@ -3,7 +3,7 @@
  **Full project (all text, figures, animations):**  
  **https://annkarpe.github.io/Smart-Cooperative-Parking-Decision-System/**
 
-## What this is about
+## Project overview
 
 Two cars, one shared parking space, no human drivers to communicate who goes first.  
 This project is a small world where:
