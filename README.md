@@ -24,30 +24,30 @@ This README is the short tour of the ideas behind it.
 
 ---
 
-## The core idea: fuzziness instead of hard rules
+## The core idea: fuzzy values instead of strict thresholds
 
-Real life is not:
+Classical rules look like this:
 
-> “If distance < 3 m → close, else → not close.”
+> “If distance < 3 m, then the car is close; otherwise it is not close.”
 
-Instead it’s more like:
+That is a hard boundary. In practice, perception is more gradual:
 
-> “At 2 m it’s *very* close, at 4 m it’s *kind of* close, at 9 m it’s not close at all.”
+> At 2 m the car feels very close, at 4 m it is somewhat close, and at 9 m it is clearly not close.
 
-Fuzzy logic captures this by giving statements a truth value between 0 and 1:
+Fuzzy logic formalises this by allowing intermediate truth values between 0 and 1. For example:
 
-- distance = 2 m → “close” ≈ 0.9  
-- distance = 4 m → “close” ≈ 0.5  
-- distance = 9 m → “close” ≈ 0.0  
+- distance = 2 m → membership in “close” ≈ 0.9  
+- distance = 4 m → membership in “close” ≈ 0.5  
+- distance = 9 m → membership in “close” ≈ 0.0  
 
-In the project, a bunch of everyday words are turned into fuzzy sets:
+In this project, several intuitive terms are modelled as fuzzy sets, such as:
 
 - distance → `close`, `medium`, `far`  
 - urgency → `low`, `medium`, `high`  
 - obstacle distance → `near`, `mid`, `clear`  
-- history (“how often I already went first”) → `rarely_first`, `balanced`, `often_first`  
+- history (“how often this car has gone first”) → `rarely_first`, `balanced`, `often_first`  
 
-Each of these labels has its own little curve (membership function) that says how true it is for a given number.
+Each label is defined by a membership function: a curve that specifies, for any numeric value, to what degree that value belongs to the corresponding concept.
 
 
 ## How the controller thinks (Mamdani in plain language)
